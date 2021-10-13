@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 const DisplayTask = () => {
@@ -7,18 +6,6 @@ const DisplayTask = () => {
   let doneTasks = taskss.filter((task) => task.status === 'Done');
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    let payload =
-      localStorage.getItem('tasks') === null ||
-      localStorage.getItem('tasks') === undefined
-        ? []
-        : JSON.parse(localStorage.getItem('tasks'));
-    useDispatch({
-      type: 'GET_TASKS',
-      payload: payload,
-    });
-  }, []);
 
   const deleteButton = (e) => {
     console.log(e.currentTarget.dataset.id);

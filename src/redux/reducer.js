@@ -1,7 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
 
 const inititalState = {
-  tasks: [],
+  tasks:
+    localStorage.getItem('tasks') === null ||
+    localStorage.getItem('tasks') === undefined
+      ? []
+      : JSON.parse(localStorage.getItem('tasks')),
 };
 
 const reducer = (state = inititalState, action) => {
