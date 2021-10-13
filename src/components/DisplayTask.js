@@ -14,7 +14,7 @@ const DisplayTask = () => {
       localStorage.getItem('tasks') === undefined
         ? []
         : JSON.parse(localStorage.getItem('tasks'));
-    dispatch({
+    useDispatch({
       type: 'GET_TASKS',
       payload: payload,
     });
