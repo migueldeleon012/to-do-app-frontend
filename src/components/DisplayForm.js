@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 const DisplayForm = () => {
-  const taskss = useSelector((state) => state.tasks);
+  const fetchedTasks = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
 
   const [feedBack, setFeedback] = useState('');
@@ -22,7 +22,7 @@ const DisplayForm = () => {
     }
     //form validation (duplicates)
     let included = false;
-    taskss.map((task) => {
+    fetchedTasks.map((task) => {
       if (task.name.toLowerCase() === newTask.toLowerCase()) {
         included = true;
       }

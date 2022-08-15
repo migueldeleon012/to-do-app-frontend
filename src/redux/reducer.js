@@ -12,6 +12,7 @@ const reducer = (state = inititalState, action) => {
   switch (action.type) {
     case 'GET_TASKS':
       return { tasks: action.payload };
+
     case 'ADD_TASK':
       let newTask = {
         _id: uuidv4(),
@@ -22,14 +23,16 @@ const reducer = (state = inititalState, action) => {
       getTasks.push(newTask);
       localStorage.setItem('tasks', JSON.stringify(getTasks));
       return { tasks: [...state.tasks, newTask] };
+
     case 'REMOVE_TASK':
       let removedTaskList = state.tasks.filter(
         (task) => task._id !== action.payload
       );
       localStorage.setItem('tasks', JSON.stringify(removedTaskList));
       return { tasks: removedTaskList };
+
     case 'PENDING_TO_DONE':
-      let updatedTaskList = state.tasks.filter((task) => {
+      let updatedTaskList = state.tasks.map((task) => {
         if (task._id === action.payload) {
           task.status = 'Done';
         }
@@ -37,6 +40,7 @@ const reducer = (state = inititalState, action) => {
       });
       localStorage.setItem('tasks', JSON.stringify(updatedTaskList));
       return { tasks: updatedTaskList };
+
     default:
       return state;
   }
